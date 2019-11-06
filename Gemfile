@@ -69,3 +69,8 @@ gem 'jquery-rails'
 
 # gem for smiple_form
 gem 'simple_form'
+
+# gem for rspec
+group :development, :test do
+  gem 'rspec-rails', '~> 3.4'
+end
