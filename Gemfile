@@ -74,3 +74,5 @@ gem 'simple_form'
 group :development, :test do
   gem 'rspec-rails', '~> 3.4'
 end
+
+gem 'rails-controller-testing'
