@@ -12,7 +12,6 @@ RSpec.describe PostsController, type: :controller do
     describe "GET #show" do
         it "renders the show template" do
             post = FactoryBot.create(:post)
-            # binding.pry
             get :show, :params => {:id => post.id}
             expect(response).to render_template :show
 
@@ -38,6 +37,8 @@ RSpec.describe PostsController, type: :controller do
             end
 
             it "redirect to root_path" do
+                post :create, :params => {:post => FactoryBot.attributes_for(:post) }
+                expect(response).to redirect_to root_path :new
 
             end
         end
@@ -49,6 +50,14 @@ RSpec.describe PostsController, type: :controller do
             it "render the new template" do 
 
             end
+        end
+    end
+
+    describe "VERB #edit" do
+        it "edit post" do
+            post = FactoryBot.create(:post)
+            get :edit, :params => {:id => post.id}
+            expect(response).to render_template :edit
         end
     end
 end
