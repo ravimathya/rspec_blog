@@ -75,6 +75,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   gem 'pry-rails'
   gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
 end
 
 gem 'rails-controller-testing'
