@@ -28,4 +28,27 @@ RSpec.describe PostsController, type: :controller do
         end
     end
 
+    describe "POST #create" do
+        context "with valid attributes" do
+            it "create a new post" do
+                expect {
+                    post :create, :params => {:post => FactoryBot.attributes_for(:post) }
+                }.to change(Post, :count).by(1)  
+
+            end
+
+            it "redirect to root_path" do
+
+            end
+        end
+
+        context "with invalid attributes" do
+            it "doesn't create a new post" do
+
+            end
+            it "render the new template" do 
+
+            end
+        end
+    end
 end
