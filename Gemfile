@@ -73,6 +73,11 @@ gem 'simple_form'
 # gem for rspec
 group :development, :test do
   gem 'rspec-rails', '~> 3.4'
+  gem 'pry-rails'
+  gem 'factory_bot_rails'
 end
 
 gem 'rails-controller-testing'
+
+# for dummy values
+

@@ -9,4 +9,15 @@ RSpec.describe PostsController, type: :controller do
 
     end
 
+    describe "GET #show" do
+        it "renders the show template" do
+            post = FactoryBot.create(:post)
+            # binding.pry
+            get :show, :params => {:id => post.id}
+            expect(response).to render_template :show
+
+        end
+
+    end
+
 end
