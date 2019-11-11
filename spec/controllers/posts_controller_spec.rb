@@ -60,4 +60,39 @@ RSpec.describe PostsController, type: :controller do
             expect(response).to render_template :edit
         end
     end
+
+    describe "PUT #update" do
+        context "when attributes are valid" do
+            it "updates the post" do
+                post = FactoryBot.create(:post)
+                put :update, :params => { :id => post.id, :post => FactoryBot.attributes_for(:post, :title => 'New Title', :author => 'Larry')}
+                post.reload
+                expect(post.title).to eq("New Title")
+                expect(post.author).to eq("Larry")
+            end
+
+            it "redirect to root_path" do
+                post = FactoryBot.create(:post)
+
+                put :update, :params => { :id => post.id, :post => FactoryBot.attributes_for(:post, :title => 'New Title', :author => 'Larry' ) }
+                expect(response).to redirect_to root_path
+            end
+        end
+
+        context "when attributes are invalid" do
+            it "doesn't updates the post" do
+                post = FactoryBot.create(:post)
+                put :update, :params => { :id => post.id, :post => FactoryBot.attributes_for(:post, :title => "New Title", :author => "Larry", :content => "hi" ) }
+                post.reload
+                expect(post.title).to_not eq("New Title")
+                expect(post.author).to_not eq("Larry")
+            end
+
+            it "renders the edit template" do
+                post = FactoryBot.create(:post)
+                put :update, :params => {:id => post.id, :post => FactoryBot.attributes_for(:invalid_post)}
+                expect(response).to render_template :edit
+            end
+        end
+    end
 end
